@@ -9,7 +9,7 @@ function App() {
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
-  const [selectedCard, setSelectedCard] = React.useState('');
+  const [selectedCard, setSelectedCard] = React.useState(null);
 
   function handleCardClick(cardItem) {
     setSelectedCard(cardItem);
@@ -31,7 +31,7 @@ function App() {
     setAddPlacePopupOpen(false);
     setEditProfilePopupOpen(false);
     setEditAvatarPopupOpen(false);
-    setSelectedCard('');
+    setSelectedCard(null);
   }
 
   return (
@@ -49,7 +49,7 @@ function App() {
         name="edit-profile"
         title="Редактировать профиль"
         btnText="Сохранить"
-        isOpen={isEditProfilePopupOpen ? 'popup_opened' : ''}
+        isOpen={isEditProfilePopupOpen}
         onClose={closeAllPopups}
       >
         <input
@@ -78,7 +78,7 @@ function App() {
         name="add-card"
         title="Новое место"
         btnText="Создать"
-        isOpen={isAddPlacePopupOpen ? 'popup_opened' : ''}
+        isOpen={isAddPlacePopupOpen}
         onClose={closeAllPopups}
       >
         <input
@@ -105,7 +105,7 @@ function App() {
         name="change-avatar"
         title="Обновить аватар"
         btnText="Сохранить"
-        isOpen={isEditAvatarPopupOpen ? 'popup_opened' : ''}
+        isOpen={isEditAvatarPopupOpen}
         onClose={closeAllPopups}
       >
         <input
@@ -128,7 +128,6 @@ function App() {
 
       <ImagePopup
         card={selectedCard}
-        isOpen={selectedCard ? 'popup_opened' : ''}
         onClose={closeAllPopups}
       />
     </div>

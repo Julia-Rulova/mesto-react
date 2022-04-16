@@ -1,20 +1,19 @@
-function ImagePopup(props) {
+function ImagePopup({ card, onClose }) {
     return (
-        <article className={`popup popup_photo-zoom ${props.isOpen}`}>
+        <article className={`popup popup_photo-zoom ${card && 'popup_opened'}`}>
             <div className="popup__container-zoom">
                 <img
                     className="popup__image"
-                    src={props.card.link}
-                    alt={props.card.name}
+                    src={card && card.link}
+                    alt={card && card.name}
                 />
-                <h2 className="popup__photo-name">{props.card.name}</h2>
+                <h2 className="popup__photo-name">{card && card.name}</h2>
                 <button
                     type="button"
                     aria-label="закрыть окно карточки."
                     className="popup__close-button"
-                    onClick={props.onClose}
-                >
-                </button>
+                    onClick={onClose}
+                />
             </div>
         </article>
     )

@@ -14,7 +14,7 @@
 
 **Ссылка на проект**
 
-* https://julia-rulova.github.io/mesto/
+* https://julia-rulova.github.io/mesto-react/
 
 **О проекте**
 
