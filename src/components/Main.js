@@ -1,42 +1,20 @@
 import React from "react";
 import api from "../utils/Api";
 import Card from "./Card";
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 function Main(props) {
-    const [userName, setUserName] = React.useState(null);
-    const [userDescription, setUserDescription] = React.useState(null);
-    const [userAvatar, setUserAvatar] = React.useState(null);
-    const [cards, setCards] = React.useState([]);
-
-    React.useEffect(() => {
-        api.getUserInfoApi()
-            .then((userData) => {
-                setUserName(userData.name);
-                setUserDescription(userData.about);
-                setUserAvatar(userData.avatar);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-
-        api.getCards()
-            .then((cardData) => {
-                setCards(cardData);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }, []);
+    const currentUser = React.useContext(CurrentUserContext);
 
     return (
         <main>
             <section className="profile">
                 <div className="profile__user">
                     <div className="profile__avatar-sector">
-                        {userAvatar && (<img className="profile__avatar"
-                            src={userAvatar}
+                        <img className="profile__avatar"
+                            src={currentUser.avatar}
                             alt="аватарка."
-                        />)}
+                        />
                         <button
                             type="button"
                             aria-label="редактирование аватара."
@@ -46,7 +24,7 @@ function Main(props) {
                     </div>
                     <div className="profile__info">
                         <div className="profile__container">
-                            <h1 className="profile__name">{userName}</h1>
+                            <h1 className="profile__name">{currentUser.name}</h1>
                             <button
                                 type="button"
                                 aria-label="редактирование профиля."
@@ -54,7 +32,7 @@ function Main(props) {
                                 onClick={props.onEditProfile}
                             />
                         </div>
-                        <p className="profile__about">{userDescription}</p>
+                        <p className="profile__about">{currentUser.about}</p>
                     </div>
                 </div>
                 <button
@@ -67,11 +45,13 @@ function Main(props) {
 
             <section>
                 <ul className="cards">
-                    {cards.map((card) => (
+                    {props.cards.map((card) => (
                         <Card
                             card={card}
                             key={card._id}
                             onCardClick={props.onCardClick}
+                            onCardLike={props.onCardLike}
+                            onCardDelete={props.onCardDelete}
                         />
                     ))}
                 </ul>
