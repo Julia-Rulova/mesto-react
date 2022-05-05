@@ -16,10 +16,7 @@ class Api {
             method: 'GET',
             headers: this._headers
         })
-            .then(this._checkResOk)
-            .then((data) => {
-                return data;
-            });
+            .then(this._checkResOk);
     }
 
     getCards() {
@@ -27,10 +24,7 @@ class Api {
             method: 'GET',
             headers: this._headers
         })
-            .then(this._checkResOk)
-            .then((data) => {
-                return data;
-            });
+            .then(this._checkResOk);
     }
 
     editUserInfo(userData) {
@@ -42,10 +36,7 @@ class Api {
                 about: userData.about
             })
         })
-            .then(this._checkResOk)
-            .then((data) => {
-                return data;
-            });
+            .then(this._checkResOk);
     }
 
     createUserCard(cardItem) {
@@ -57,10 +48,7 @@ class Api {
                 link: cardItem.link
             })
         })
-            .then(this._checkResOk)
-            .then((data) => {
-                return data;
-            });
+            .then(this._checkResOk);
     }
 
     cardLike(id) {
@@ -68,10 +56,7 @@ class Api {
             method: 'PUT',
             headers: this._headers
         })
-            .then(this._checkResOk)
-            .then((data) => {
-                return data;
-            });
+            .then(this._checkResOk);
     }
 
     cardDislike(id) {
@@ -79,10 +64,7 @@ class Api {
             method: 'DELETE',
             headers: this._headers
         })
-            .then(this._checkResOk)
-            .then((data) => {
-                return data;
-            });
+            .then(this._checkResOk);
     }
 
     changeLikeCardStatus(id, isLiked) {
@@ -90,10 +72,7 @@ class Api {
             method: `${isLiked ? 'PUT' : 'DELETE'}`,
             headers: this._headers
         })
-            .then(this._checkResOk)
-            .then((data) => {
-                return data;
-            });
+            .then(this._checkResOk);
     }
 
     deleteUserCard(id) {
@@ -101,10 +80,7 @@ class Api {
             method: 'DELETE',
             headers: this._headers
         })
-            .then(this._checkResOk)
-            .then((data) => {
-                return data;
-            });
+            .then(this._checkResOk);
     }
 
     editAvatar(userData) {
@@ -115,10 +91,7 @@ class Api {
                 avatar: userData.avatar
             })
         })
-            .then(this._checkResOk)
-            .then((data) => {
-                return data;
-            });
+            .then(this._checkResOk);
     }
 }
 

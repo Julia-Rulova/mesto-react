@@ -1,11 +1,10 @@
 import React from 'react';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
+import api from "../utils/api";
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
-import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
-import api from "../utils/Api";
-import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
 import AddPlacePopup from './AddPlacePopup';
@@ -19,8 +18,9 @@ function App() {
   const [cards, setCards] = React.useState([]);
 
   React.useEffect(() => {
-    api.getCards()
-      .then((cardData) => {
+    Promise.all([api.getUserInfoApi(), api.getCards()])
+      .then(([userData, cardData]) => {
+        setCurrentUser(userData);
         setCards(cardData);
       })
       .catch((err) => {
@@ -50,16 +50,6 @@ function App() {
         console.log(err);
       });
   }
-
-  React.useEffect(() => {
-    api.getUserInfoApi()
-      .then((userData) => {
-        setCurrentUser(userData);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
 
   function handleCardClick(cardItem) {
     setSelectedCard(cardItem);
@@ -152,14 +142,6 @@ function App() {
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
           onUpdateAvatar={handleUpdateAvatar} />
-
-        {/* <PopupWithForm
-        name="delete-confirm"
-        title="Вы уверены?"
-        btnText="Да"
-      >
-      </PopupWithForm> */}
-
 
         <ImagePopup
           card={selectedCard}
