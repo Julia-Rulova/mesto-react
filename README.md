@@ -12,9 +12,22 @@
 * API
 * React
 
-**Ссылка на проект**
+### Инструкция по запуску
 
-* https://julia-rulova.github.io/mesto-react/
+1. Клонируем репозиторий
+```
+git clone https://github.com/Julia-Rulova/mesto-react.git
+```
+
+2. Устанавливаем зависимости
+```
+npm install
+```
+
+3. Запускаем проект
+```
+npm start
+```
 
 **О проекте**
 
